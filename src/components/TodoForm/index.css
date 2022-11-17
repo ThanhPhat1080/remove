@@ -1,0 +1,19 @@
+.add-button {
+  padding: 2px 8px;
+}
+
+.add-todo {
+  display: flex;
+}
+
+.add-icon {
+  display: flex;
+  width: 30px;
+  height: 30px;
+}
+
+.todo-title {
+  font-size: 70px;
+  color: var(--chinese-silver);
+  text-transform: lowercase;
+}
