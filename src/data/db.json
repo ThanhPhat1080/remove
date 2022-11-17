@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "name": "thong",
+      "avatar": "https://upload.wikimedia.org/wikipedia/en/8/86/Avatar_Aang.png",
+      "id": "2022-11-13T12:52:30.101Z"
+    },
+    {
+      "id": "2022-11-13T13:29:39.860Z",
+      "name": "Slack",
+      "avatar": "https://www.cgv.vn/media/catalog/product/cache/1/image/1800x/71252117777b696995f01934522c402d/a/v/avatar-1615695904-2089-1615696022.jpg"
+    }
+  ],
+  "todos": [
+    {
+      "idUser": "2022-11-13T12:52:30.101Z",
+      "task": "coding",
+      "id": "1"
+    },
+    {
+      "idUser": "2022-11-13T13:29:39.860Z",
+      "task": "task1",
+      "id": "2"
+    },
+    {
+      "idUser": "2022-11-13T13:29:39.860Z",
+      "task": "task2",
+      "id": "3"
+    }
+  ]
+}

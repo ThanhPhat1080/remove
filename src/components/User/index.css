@@ -1,0 +1,22 @@
+.user-item {
+  padding: 15px;
+  border: 2px solid var(--charleston-green);
+  display: flex;
+  align-items: center;
+}
+
+.user-selected {
+  background-color: var(--ruddy-pink);
+}
+
+.user-item:hover {
+  background-color: var(--ruddy-pink);
+}
+
+.user-item:hover .icon {
+  display: block;
+}
+
+.icon-delete {
+  display: none;
+}
