@@ -17,7 +17,14 @@ const TodoForm = ({ onAddTodo }: TodoFormProps) => {
       <h1 className='title todo-title'>todos</h1>
       <form method='post' onSubmit={onAddTodo}>
         <div className='add-todo'>
-          <Input size='input-lg' id='task' name='task' placeholder='Add new todo' label='' />
+          <Input
+            size='input-lg'
+            id='task'
+            name='task'
+            placeholder='Add new todo'
+            defaultValue=''
+            label=''
+          />
           <button className='add-button'>
             <img className='add-icon' src={iconAdd} alt='add-todo' />
           </button>

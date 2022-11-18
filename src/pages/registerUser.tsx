@@ -68,7 +68,7 @@ const RegisterUser = () => {
     }
 
     // Check validate if error then create user, display notification error
-    errors?.avatar ? setMessage(errors?.avatar) : errors?.name && setMessage(errors?.name);
+    errors?.name ? setMessage(errors?.name) : errors?.avatar && setMessage(errors?.avatar);
     setVariant(Variant.ERROR);
     setIsOpen(true);
     setTimeout(() => {

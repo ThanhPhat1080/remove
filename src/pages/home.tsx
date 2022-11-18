@@ -1,5 +1,5 @@
 // Lib
-import { FormEvent, useContext, useEffect } from 'react';
+import { FormEvent, useContext, useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 // Components
@@ -34,6 +34,8 @@ import { removeUser } from '@service/userService';
 import { SERVER_ERROR } from '@constants/errorMessage';
 
 const Home = () => {
+  const [isRemovingUser, setRemovingUser] = useState(false);
+
   const { users, dispatch: dispatchUser, selectingUserId } = useContext(UserContext);
   const { data: listUser, error: listUserError } = useSWR<IUser[]>(USER_ENDPOINT, fetcher);
 
@@ -72,6 +74,12 @@ const Home = () => {
     // Get value in input
     const id = new Date().toJSON();
     const task = (event.currentTarget.elements.namedItem('task') as HTMLInputElement).value;
+
+    // Check task is empty
+    if (!task) {
+      return;
+    }
+
     const todo: ITodo = {
       id,
       task: task,
@@ -80,7 +88,7 @@ const Home = () => {
     };
 
     // Reset value input
-    (event.currentTarget.elements.namedItem('task') as HTMLInputElement).value = ' ';
+    (event.currentTarget.elements.namedItem('task') as HTMLInputElement).value = '';
 
     try {
       const response = await addTodo(todo, TODO_ENDPOINT);
@@ -157,6 +165,8 @@ const Home = () => {
 
   // Remove user
   const handleRemoveUser = async (id: string) => {
+    setRemovingUser(true);
+
     handleRemoveTodoByUser(id);
 
     try {
@@ -170,20 +180,35 @@ const Home = () => {
       }
     } catch {
       throw new Error(SERVER_ERROR);
+    } finally {
+      setRemovingUser(false);
+    }
+  };
+
+  // Confirm remove user
+  const confirmRemoveUser = (id: string, name: string) => {
+    if (window.confirm(`Are you sure remove user ${name.toUpperCase()} ?`)) {
+      handleRemoveUser(id);
     }
   };
 
   return (
     <div>
-      <UserSidebar onRemoveUser={handleRemoveUser} users={users} />
-      <BodyContent>
-        <TodoForm onAddTodo={handleAddTodo} />
-        <ListTodo
-          onCheckDoneTodo={handleCheckDoneTodo}
-          onRemoveTodo={handleRemoveTodo}
-          todos={todos}
-        />
-      </BodyContent>
+      <UserSidebar isRemovingUser={isRemovingUser} onRemoveUser={confirmRemoveUser} users={users} />
+      {selectingUserId && (
+        <BodyContent>
+          <TodoForm onAddTodo={handleAddTodo} />
+          {!listTodo ? (
+            <div className='loading'>Loading...</div>
+          ) : (
+            <ListTodo
+              onCheckDoneTodo={handleCheckDoneTodo}
+              onRemoveTodo={handleRemoveTodo}
+              todos={todos}
+            />
+          )}
+        </BodyContent>
+      )}
     </div>
   );
 };
