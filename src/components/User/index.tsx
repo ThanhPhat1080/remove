@@ -6,13 +6,13 @@ export type UserProps = {
   avatar: string;
   name: string;
   className: string;
-  onRemoveUser: (id: string) => void;
+  onRemoveUser: (id: string, name: string) => void;
   onSelectedUserId: (id: string) => void;
 };
 
 const User = ({ id, name, avatar, className, onRemoveUser, onSelectedUserId }: UserProps) => {
   const handleRemoveUser = () => {
-    onRemoveUser(id);
+    onRemoveUser(id, name);
   };
 
   const handleGetSelectingUserId = () => {

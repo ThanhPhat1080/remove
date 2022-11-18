@@ -8,7 +8,7 @@ import UserSidebar, { UserSidebarProps } from '@components/UserSidebar';
 import { mockDataUser } from '@mocks/mockDataUser';
 
 describe('Test UserSidebar component', () => {
-// @ts-ignore
+  // @ts-ignore
   const initUserSidebar: UserSidebarProps = {
     users: mockDataUser,
   };

@@ -9,8 +9,8 @@ import { mockDataUser } from '@mocks/mockDataUser';
 
 describe('Test Sidebar component', () => {
   const initSidebar: SidebarProps = {
-// @ts-ignore
-users: mockDataUser,
+    // @ts-ignore
+    users: mockDataUser,
   };
 
   test('It should match DOM Snapshot', () => {

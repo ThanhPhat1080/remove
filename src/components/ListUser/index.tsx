@@ -15,28 +15,24 @@ import { UserAction } from '@reducers/userReducer';
 
 export type ListUserProps = {
   listUser: IUser[];
-  onRemoveUser: (id: string) => void;
+  onRemoveUser: (id: string, name: string) => void;
 };
 
 const ListUser = ({ listUser, onRemoveUser }: ListUserProps) => {
-  const { users, dispatch: dispatchUser } = useContext(UserContext);
-  const [idSelected, setIdSelected] = useState('');
+  const { users, dispatch: dispatchUser, selectingUserId } = useContext(UserContext);
 
   const handleGetSelectingUserId = (idSelected: string) => {
-    setIdSelected(idSelected);
     dispatchUser({
       action: UserAction.SELECTING_USER_ID,
       payload: idSelected,
     });
-
-    return;
   };
 
   return (
     <ul className='user-list'>
       {listUser.map(({ id, avatar, name }) => (
         <User
-          className={id === idSelected ? 'user-item user-selected' : 'user-item'}
+          className={id === selectingUserId ? 'user-item user-selected' : 'user-item'}
           onSelectedUserId={handleGetSelectingUserId}
           onRemoveUser={onRemoveUser}
           key={id}

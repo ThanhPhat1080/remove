@@ -10,6 +10,7 @@ export type InputProps = {
   errorMessage?: string;
   defaultValue?: string;
   size?: 'input-lg';
+  minLength?: number;
 };
 
 export const Input = ({
@@ -21,6 +22,7 @@ export const Input = ({
   errorMessage,
   defaultValue,
   size,
+  minLength,
 }: InputProps) => {
   return (
     <div>
@@ -35,6 +37,7 @@ export const Input = ({
           className={`input ${size}`}
           name={name}
           placeholder={placeholder}
+          minLength={minLength}
         />
         {errorMessage && <small className='err-msg'>{errorMessage}</small>}
       </div>

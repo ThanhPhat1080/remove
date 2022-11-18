@@ -1,5 +1,6 @@
 // Lib
 import { FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 
 // Components
 import Input from '@components/Input';
@@ -22,10 +23,13 @@ const UserForm = ({ onRegisterUser }: UserFormProps) => {
           name='avatar'
           label='Avatar'
           placeholder='Enter link avatar'
+          minLength={6}
         />
       </div>
       <div className='button-wrapper'>
-        <button className='btn-secondary cancel'>Cancel</button>
+        <Link className='btn-secondary cancel' to='/'>
+          Cancel
+        </Link>
         <button type='submit' className='btn-success'>
           Submit
         </button>

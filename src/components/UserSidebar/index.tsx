@@ -10,14 +10,15 @@ import { IUser } from 'types/user';
 
 export type UserSidebarProps = {
   users: IUser[];
-// @ts-ignore
-onRemoveUser: (id: string) => void;
+  isRemovingUser: boolean;
+  onRemoveUser: (id: string, name: string) => void;
 };
 
-const UserSidebar = ({ users, onRemoveUser }: UserSidebarProps) => {
+const UserSidebar = ({ users, onRemoveUser, isRemovingUser }: UserSidebarProps) => {
   return (
     <Sidebar>
       <h2 className='title sidebar-title'>List User</h2>
+      {isRemovingUser && <div className='loading'>Loading...</div>}
       <ListUser onRemoveUser={onRemoveUser} listUser={users} />
       <Link to={'/register'}>
         <button className='button'>New user</button>
