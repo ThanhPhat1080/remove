@@ -27,3 +27,5 @@ dist-ssr
 #Test
 coverage
 .vercel
+
+/src/data/db.json
