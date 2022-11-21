@@ -3,6 +3,8 @@
   border: 2px solid var(--charleston-green);
   display: flex;
   align-items: center;
+  color: var(--white);
+  cursor: pointer;
 }
 
 .user-selected {
@@ -19,4 +21,21 @@
 
 .icon-delete {
   display: none;
+}
+
+@media screen and (max-width: 992px) {
+  .user-item {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .user-item {
+    padding: 5px;
+  }
+
+  .icon-delete {
+    max-width: 10px;
+    padding-left: 2px;
+  }
 }

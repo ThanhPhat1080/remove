@@ -9,7 +9,6 @@
 @import url(../components/TodoItem/index.css);
 @import url(../components/UserSidebar/index.css);
 @import url(../components/UserForm/index.css);
-@import url(../components/Popup/index.css);
 @import url(../components/User/index.css);
 
 .title {
@@ -24,6 +23,7 @@
   height: 30px;
   border-radius: 50%;
   border: 2px solid var(--davy-grey);
+  margin-right: 15px;
 }
 
 .link {
@@ -90,4 +90,12 @@
 
 .link-user {
   text-decoration: none;
+}
+
+@media screen and (max-width: 992px) {
+  .avatar {
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+  }
 }

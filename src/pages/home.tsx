@@ -8,7 +8,6 @@ import BodyContent from '@components/BodyContent';
 import ListTodo from '@components/ListTodo';
 import TodoForm from '@components/TodoForm';
 import UserSidebar from '@components/UserSidebar';
-import Popup from '@components/Popup';
 
 // Types
 import { IUser } from 'types/user';
@@ -32,6 +31,7 @@ import { TodoAction } from '@reducers/todoReducer';
 // Service
 import { addTodo, checkDoneTodo, removeTodo } from '@service/todoService';
 import { removeUser } from '@service/userService';
+import { generationId } from '@helpers/generationId';
 
 const Home = () => {
   // Using useParam get id in url
@@ -43,12 +43,7 @@ const Home = () => {
 
   // Get data list user
   const { data: listUser, error: listUserError } = useSWR<IUser[]>(USER_ENDPOINT, fetcher);
-  const {
-    users,
-    dispatch: dispatchUser,
-    isActionUserError,
-    userErrorMessage,
-  } = useContext(UserContext);
+  const { users, dispatch: dispatchUser } = useContext(UserContext);
 
   // Get data list todo
   const { data: listTodo, error: listTodoError } = useSWR<ITodo[]>(
@@ -92,7 +87,9 @@ const Home = () => {
     event.preventDefault();
 
     // Get value in input
-    const id = (Math.random() + 1).toString(36).substring(7);
+    const id = generationId();
+    console.log(id);
+
     const task = (event.currentTarget.elements.namedItem('task') as HTMLInputElement).value;
 
     const todo: ITodo = {
@@ -190,8 +187,6 @@ const Home = () => {
 
   // Remove user
   const handleRemoveUser = async (id: string) => {
-    setRemovingUser(true);
-
     handleRemoveTodoByUser(id);
 
     const userDeleting = users.find((user) => user.id === id);
@@ -204,7 +199,7 @@ const Home = () => {
       });
 
       await removeUser(`${USER_ENDPOINT}/${id}`);
-      navigate(Path.DASHBOARD);
+      navigate(Path.HOME);
     } catch {
       alert(`Error when remove user item: ${userDeleting?.name}`);
 

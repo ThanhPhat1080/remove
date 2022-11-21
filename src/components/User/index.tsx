@@ -26,9 +26,7 @@ const User = ({ id, name, avatar, className, onRemoveUser }: UserProps) => {
   return (
     <li className={className} onClick={navigateUserSelected} data-testid='selected-id-user'>
       <img src={avatar} alt='Avatar' className='avatar' />
-      <a className='link' href=''>
-        {name}
-      </a>
+      {name}
       <img
         src={iconDelete}
         onClick={handleRemoveUser}

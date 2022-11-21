@@ -17,3 +17,21 @@
   color: var(--chinese-silver);
   text-transform: lowercase;
 }
+
+@media screen and (max-width: 992px) {
+  .add-icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media screen and (max-width: 775px) {
+  .add-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .todo-title {
+    font-size: 40px;
+  }
+}

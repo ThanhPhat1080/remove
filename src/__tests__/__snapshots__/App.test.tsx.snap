@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App It should render App 1`] = `
+<div>
+  <div>
+    <aside
+      class="sidebar-wrapper"
+    >
+      <h2
+        class="title sidebar-title"
+      >
+        List User
+      </h2>
+      <ul
+        class="user-list"
+      />
+      <a
+        href="/register"
+      >
+        <button
+          class="button"
+        >
+          New user
+        </button>
+      </a>
+    </aside>
+  </div>
+</div>
+`;

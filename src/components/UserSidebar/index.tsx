@@ -23,7 +23,7 @@ const UserSidebar = ({ users, onRemoveUser, isRemovingUser }: UserSidebarProps) 
       <h2 className='title sidebar-title'>List User</h2>
       {isRemovingUser && <div className='loading'>Loading...</div>}
       <ListUser onRemoveUser={onRemoveUser} listUser={users} />
-      <Link to={Path.DASHBOARD + Path.REGISTER_USER}>
+      <Link to={Path.HOME + Path.REGISTER_USER}>
         <button className='button'>New user</button>
       </Link>
     </Sidebar>

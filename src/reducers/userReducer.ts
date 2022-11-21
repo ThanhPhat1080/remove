@@ -24,7 +24,7 @@ const userReducer = (state: IDataUser, actions: DataAction): IDataUser => {
       return { ...state, users: payload as IUser[] };
     }
     case UserAction.CREATE_USER: {
-      return { ...state.users, users: state.users.concat(payload as IUser) };
+      return { users: state.users.concat(payload as IUser) };
     }
     case UserAction.CREATE_USER_FAILED: {
       const user = payload as IUser;

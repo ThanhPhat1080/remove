@@ -1,10 +1,9 @@
 // Lib
-import { FormEvent, useContext, useState } from 'react';
+import { FormEvent, useContext } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 // Components
 import UserForm from '@components/UserForm';
-import Popup from '@components/Popup';
 
 // Types
 import { IUser } from 'types/user';
@@ -22,30 +21,17 @@ import { UserContext } from '@contexts/userContext';
 // Reducers
 import { UserAction } from '@reducers/userReducer';
 import { Path } from '@constants/paths';
-
-const enum Variant {
-  SUCCESS = 'bg-success',
-  ERROR = 'bg-error',
-}
+import { generationId } from '@helpers/generationId';
 
 const RegisterUser = () => {
-  const { dispatch, userErrorMessage } = useContext(UserContext);
-
-  /**
-   * varian: background color notification
-   * message: message notification
-   * isOpen: open modal notification
-   */
-  const [variant, setVariant] = useState<Variant>(Variant.SUCCESS);
-  const [message, setMessage] = useState<string>('');
-  const [isOpenPopup, setIsOpenPopup] = useState(false);
+  const { dispatch } = useContext(UserContext);
 
   const navigate: NavigateFunction = useNavigate();
 
   const validateUser = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const id = new Date().getTime().toString();
+    const id = generationId();
     const name = (event.currentTarget.elements.namedItem('name') as HTMLInputElement).value;
     const avatar = (event.currentTarget.elements.namedItem('avatar') as HTMLInputElement).value;
 
@@ -57,15 +43,12 @@ const RegisterUser = () => {
     // Check validate if pass then create user, display notification success
     if (isValid) {
       handleCreateUser(user);
+      (event.currentTarget.elements.namedItem('name') as HTMLInputElement).value = '';
+      (event.currentTarget.elements.namedItem('avatar') as HTMLInputElement).value = '';
     }
 
     // Check validate if error then create user, display notification error
-    errors?.name ? setMessage(errors?.name) : errors?.avatar && setMessage(errors?.avatar);
-    setVariant(Variant.ERROR);
-    setIsOpenPopup(true);
-    setTimeout(() => {
-      setIsOpenPopup(false);
-    }, 3000);
+    errors?.name ? alert(errors?.name) : errors?.avatar && alert(errors?.avatar);
   };
 
   // Create user
@@ -77,13 +60,12 @@ const RegisterUser = () => {
       });
 
       await addUser(user, USER_ENDPOINT);
-      setMessage('Add user successfully!'),
-        setVariant(Variant.SUCCESS),
-        setIsOpenPopup(true),
-        setTimeout(() => {
-          navigate(`${Path.DASHBOARD}${user.id}`);
-        }, 2000);
+
+      if (window.confirm('Create user success. Navigate to Home page now')) {
+        navigate(`${Path.HOME}${user.id}`);
+      }
     } catch {
+      alert(`Error when create user item: ${user.name}`);
       dispatch({
         action: UserAction.CREATE_USER_FAILED,
         payload: { ...user },
@@ -93,9 +75,6 @@ const RegisterUser = () => {
 
   return (
     <div>
-      {isOpenPopup && (
-        <Popup isOpen={isOpenPopup} variant={variant} message={userErrorMessage || message} />
-      )}
       <UserForm onRegisterUser={validateUser} />
     </div>
   );

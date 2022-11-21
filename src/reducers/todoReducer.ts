@@ -28,7 +28,7 @@ const todoReducer = (state: IDataTodo, actions: DataAction): IDataTodo => {
     }
     case TodoAction.CREATE_TODO: {
       const listTodoUpdate = state.todos.concat(payload as ITodo);
-      return { ...state.todos, todos: listTodoUpdate };
+      return { todos: listTodoUpdate };
     }
     case TodoAction.CREATE_TODO_FAILED: {
       const todo = payload as ITodo;

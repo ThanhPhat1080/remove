@@ -1,5 +1,6 @@
 // Lib
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 
 // Components
 import UserSidebar, { UserSidebarProps } from '@components/UserSidebar';
@@ -8,24 +9,31 @@ import UserSidebar, { UserSidebarProps } from '@components/UserSidebar';
 import { mockDataUser } from '@mocks/mockDataUser';
 
 describe('Test UserSidebar component', () => {
-  // @ts-ignore
   const initUserSidebar: UserSidebarProps = {
     users: mockDataUser,
+    onRemoveUser: jest.fn(),
+    isRemovingUser: true,
   };
 
-  test('It should match DOM Snapshot', () => {
-    const { container } = render(<UserSidebar {...initUserSidebar} />);
+  test('It should render correctly with initial Props', () => {
+    const { container } = render(
+      <BrowserRouter>
+        <UserSidebar {...initUserSidebar} />
+      </BrowserRouter>,
+    );
 
     expect(container).toMatchSnapshot();
   });
 
   test('It should match data for UserSidebar component', () => {
-    render(<UserSidebar {...initUserSidebar} />);
+    render(
+      <BrowserRouter>
+        <UserSidebar {...initUserSidebar} />
+      </BrowserRouter>,
+    );
 
     expect(screen.getAllByRole('img')[0].getAttribute('src')).toEqual(
       'https://haycafe.vn/wp-content/uploads/2022/03/Avatar-hai-1.jpg',
     );
-
-    expect(screen.getAllByRole('link')[0].textContent).toEqual('user1');
   });
 });

@@ -21,8 +21,8 @@ function App() {
       <UserProvider>
         <Routes>
           <Route path={Path.REGISTER_USER} element={<RegisterUser />} />
-          <Route path={Path.DASHBOARD} element={<Home />} />
-          <Route path={`${Path.DASHBOARD}:selectingUserId`} element={<Home />} />
+          <Route path={Path.HOME} element={<Home />} />
+          <Route path={`${Path.HOME}:selectingUserId`} element={<Home />} />
         </Routes>
       </UserProvider>
     </TodoProvider>

@@ -26,11 +26,10 @@ const UserForm = ({ onRegisterUser }: UserFormProps) => {
           name='avatar'
           label='Avatar'
           placeholder='Enter link avatar'
-          minLength={6}
         />
       </div>
       <div className='button-wrapper'>
-        <Link className='btn-secondary cancel' to={Path.DASHBOARD}>
+        <Link className='btn-secondary cancel' to={Path.HOME}>
           Cancel
         </Link>
         <button type='submit' className='btn-success'>
