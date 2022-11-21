@@ -28,4 +28,4 @@ dist-ssr
 coverage
 .vercel
 
-/src/data/db.json
+~/src/data/db.json

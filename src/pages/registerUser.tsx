@@ -45,7 +45,7 @@ const RegisterUser = () => {
   const validateUser = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const id = (Math.random() + 1).toString(36).substring(7);
+    const id = new Date().getTime().toString();
     const name = (event.currentTarget.elements.namedItem('name') as HTMLInputElement).value;
     const avatar = (event.currentTarget.elements.namedItem('avatar') as HTMLInputElement).value;
 
