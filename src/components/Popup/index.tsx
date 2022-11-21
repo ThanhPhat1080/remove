@@ -1,3 +1,6 @@
+// Lib
+import { useState } from 'react';
+
 export type PopupProps = {
   isOpen: boolean;
   message: string;
@@ -5,9 +8,15 @@ export type PopupProps = {
 };
 
 const Popup = ({ message, variant, isOpen }: PopupProps) => {
+  const [isOpenPopup, setIsOpenPopup] = useState(isOpen);
+
+  setTimeout(() => {
+    setIsOpenPopup(false);
+  }, 3000);
+
   return (
     <>
-      {isOpen && (
+      {isOpenPopup && (
         <div className={`popup-wrapper ${variant}`}>
           <h4 className='popup'>{message}</h4>
         </div>

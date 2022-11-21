@@ -1,5 +1,5 @@
 // Lib
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useRoutes } from 'react-router-dom';
 
 // Styles
 import './styles/index.css';
@@ -20,8 +20,9 @@ function App() {
     <TodoProvider>
       <UserProvider>
         <Routes>
-          <Route path={Path.REGISTER} element={<RegisterUser />} />
+          <Route path={Path.REGISTER_USER} element={<RegisterUser />} />
           <Route path={Path.DASHBOARD} element={<Home />} />
+          <Route path={`${Path.DASHBOARD}:selectingUserId`} element={<Home />} />
         </Routes>
       </UserProvider>
     </TodoProvider>

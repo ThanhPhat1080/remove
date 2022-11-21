@@ -1,4 +1,4 @@
 export enum Path {
   DASHBOARD = '/',
-  REGISTER = 'register',
+  REGISTER_USER = 'register',
 }

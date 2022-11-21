@@ -21,11 +21,17 @@ const TodoItem = ({ id, task, status = false, onRemoveTodo, onCheckDoneTodo }: T
   return (
     <li className='todo-item'>
       <div className='round'>
-        <input checked={status} type='checkbox' />
-        <label onClick={handleCheckDoneTodo} htmlFor='checkbox' />
+        <input checked={status} onChange={handleCheckDoneTodo} type='checkbox' />
+        <label data-testid='check-done-todo' onClick={handleCheckDoneTodo} htmlFor='checkbox' />
       </div>
       <p className='todo-task'>{status ? <s>{task}</s> : task}</p>
-      <img src={iconDelete} alt='delete' className='icon' onClick={handleRemoveTodo} />
+      <img
+        src={iconDelete}
+        data-testid='delete-todo'
+        alt='delete'
+        className='icon'
+        onClick={handleRemoveTodo}
+      />
     </li>
   );
 };

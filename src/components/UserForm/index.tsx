@@ -1,8 +1,12 @@
 // Lib
 import { FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 
 // Components
 import Input from '@components/Input';
+
+// Constants
+import { Path } from '@constants/paths';
 
 export type UserFormProps = {
   onRegisterUser: (event: FormEvent<HTMLFormElement>) => void;
@@ -10,10 +14,10 @@ export type UserFormProps = {
 
 const UserForm = ({ onRegisterUser }: UserFormProps) => {
   return (
-    <form method='post' className='user-form' onSubmit={onRegisterUser}>
+    <form method='post' data-testid='user-form' className='user-form' onSubmit={onRegisterUser}>
       <h2 className='title'>Create new user</h2>
       <div className='user-name'>
-        <Input id='name' name='name' label='Name' placeholder='Enter name' />
+        <Input id='name' name='name' label='Name' placeholder='Enter name' minLength={6} />
       </div>
       <div className='avatar-url'>
         <Input
@@ -25,7 +29,9 @@ const UserForm = ({ onRegisterUser }: UserFormProps) => {
         />
       </div>
       <div className='button-wrapper'>
-        <button className='btn-secondary cancel'>Cancel</button>
+        <Link className='btn-secondary cancel' to={Path.DASHBOARD}>
+          Cancel
+        </Link>
         <button type='submit' className='btn-success'>
           Submit
         </button>

@@ -81,3 +81,13 @@
 .bg-error {
   background-color: var(--red);
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.link-user {
+  text-decoration: none;
+}

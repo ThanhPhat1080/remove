@@ -12,16 +12,20 @@ import { IDataTodo } from 'types/dataType';
 
 const initialState: IDataTodo = {
   todos: [],
+  isActionTodoError: false,
+  todoErrorMessage: '',
 };
 
 export const TodoProvider: React.FC<{ children: JSX.Element[] | JSX.Element }> = ({ children }) => {
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
-  const { todos } = state;
+  const { todos, isActionTodoError, todoErrorMessage } = state;
 
   const value = {
     todos,
     dispatch,
+    isActionTodoError,
+    todoErrorMessage,
   };
 
   return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;

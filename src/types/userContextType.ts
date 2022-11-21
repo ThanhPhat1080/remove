@@ -4,5 +4,6 @@ import { IUser } from './user';
 export interface IUserContext {
   users: IUser[];
   dispatch: Function;
-  selectingUserId?: string;
+  isActionUserError?: boolean;
+  userErrorMessage?: string;
 }

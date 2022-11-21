@@ -4,9 +4,12 @@ import { IUser } from './user';
 
 export interface IDataUser {
   users: IUser[];
-  selectingUserId?: string;
+  isActionUserError?: boolean;
+  userErrorMessage?: string;
 }
 
 export interface IDataTodo {
   todos: ITodo[];
+  isActionTodoError?: boolean;
+  todoErrorMessage?: string;
 }
