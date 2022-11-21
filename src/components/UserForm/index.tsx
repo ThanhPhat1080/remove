@@ -26,6 +26,7 @@ const UserForm = ({ onRegisterUser }: UserFormProps) => {
           name='avatar'
           label='Avatar'
           placeholder='Enter link avatar'
+          minLength={6}
         />
       </div>
       <div className='button-wrapper'>

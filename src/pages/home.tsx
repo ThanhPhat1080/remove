@@ -190,6 +190,8 @@ const Home = () => {
 
   // Remove user
   const handleRemoveUser = async (id: string) => {
+    setRemovingUser(true);
+
     handleRemoveTodoByUser(id);
 
     const userDeleting = users.find((user) => user.id === id);
