@@ -11,6 +11,10 @@
 @import url(../components/UserForm/index.css);
 @import url(../components/User/index.css);
 
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .title {
   text-transform: uppercase;
   text-align: center;
